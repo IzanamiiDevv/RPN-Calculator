@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { TOffset, TPosition } from './Types';
+import Evaluate from './components/Evaluate';
 import Display from './components/Display';
 import './calculator.css';
 
@@ -7,7 +8,7 @@ const Calculator: React.FC = () => {
     const [position, setPosition] = useState<TPosition>({ x: (window.outerWidth / 2) - (380 / 2), y: 50 });
     const [isDragging, setIsDragging] = useState<boolean>(false);
     const [offset, setOffset] = useState<TOffset>({ x: 0, y: 0 });
-    const [expresson, setExpression] = useState<string>('');
+    const [expresson, setExpression] = useState<string>('(380 / 2) + (20 * 3)');
 
     useEffect(() => {
 
@@ -53,7 +54,7 @@ const Calculator: React.FC = () => {
                 width: '380px',
                 height: '600px',
         }} className='calculator'>
-            <Display display={expresson}/>
+            <Display display={Evaluate(expresson).toString()}/>
             <button onClick={()=>{
                 setExpression(expresson + "s");
             }}>Add</button>

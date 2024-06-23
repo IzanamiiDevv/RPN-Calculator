@@ -12,4 +12,6 @@ type TOffset = {
     y: number;
 }
 
-export type { TDisplay, TPosition, TOffset };
+type Result = string | number;
+
+export type { TDisplay, TPosition, TOffset, Result };

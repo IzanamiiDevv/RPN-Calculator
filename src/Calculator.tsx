@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from 'react';
+import Display from './components/Display';
+import './calculator.css';
 
 const Calculator: React.FC = () => {
     const [position, setPosition] = useState({ x: (window.outerWidth / 2) - (380 / 2), y: 50 });
     const [isDragging, setIsDragging] = useState(false);
     const [offset, setOffset] = useState({ x: 0, y: 0 });
+    const [expresson, setExpression] = useState(' ');
 
     useEffect(() => {
 
@@ -43,15 +46,16 @@ const Calculator: React.FC = () => {
 
     return (
         <div onMouseDown={handleMouseDown} style={{
-                position: 'absolute',
                 left: `${position.x}px`,
                 top: `${position.y}px`,
                 cursor: isDragging ? 'grabbing' : 'grab',
                 width: '380px',
                 height: '600px',
-                backgroundColor: 'lightblue',
-        }}>
-            <h1>{`${position.x} ${position.y}`}</h1>
+        }} className='calculator'>
+            <Display display={expresson}/>
+            <button onClick={()=>{
+                setExpression(expresson + "s");
+            }}>Add</button>
         </div>
     );
 };

@@ -2,4 +2,14 @@ type TDisplay = {
     display: string;
 }
 
-export type { TDisplay };
+type TPosition = {
+    x: number;
+    y: number;
+}
+
+type TOffset = {
+    x: number;
+    y: number;
+}
+
+export type { TDisplay, TPosition, TOffset };

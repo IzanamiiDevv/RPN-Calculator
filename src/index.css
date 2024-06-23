@@ -1,9 +1,16 @@
 * {
   margin: 0;
   padding: 0;
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none;   /* Chrome/Safari/Opera */
+  -khtml-user-select: none;    /* Konqueror */
+  -moz-user-select: none;      /* Firefox */
+  -ms-user-select: none;       /* Internet Explorer/Edge*/
+  user-select: none;    
 }
 
 body {
-  background-color: #001;
+  background-color: rgb(129, 129, 235);
   color: #fffe;
+  overflow: hidden;
 }

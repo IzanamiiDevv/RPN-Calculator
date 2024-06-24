@@ -1,3 +1,4 @@
+import Display from './Display';
 import './main.calculator.css';
 
 const MainCalculator = () => {
@@ -8,13 +9,7 @@ const MainCalculator = () => {
         <a rel="noopener noreferrer">Calculator</a>
         <div className="back-toppart"></div>
       </div>
-      <div className="window">
-        <div className="result">
-          <input className="readout" readOnly disabled value={"Test"} />
-          <input className="placehold" readOnly disabled placeholder="888888888888888" />
-        </div>
-        <div className="plane"></div>
-      </div>
+      <Display display='Gago'/>
       <div className="section one">
         <button className="key" onClick={() => {}}><div className="key_before">СП</div></button>
         <button className="key"><div className="key_before">П+</div></button>

@@ -12,6 +12,12 @@ type TOffset = {
     y: number;
 }
 
+type TButton = {
+    setToken: Function;
+    token: string;
+    type: string;
+}
+
 type Result = string | number;
 
-export type { TDisplay, TPosition, TOffset, Result };
+export type { TDisplay, TPosition, TOffset, TButton, Result };

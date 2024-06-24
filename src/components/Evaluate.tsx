@@ -14,25 +14,47 @@ type TokensRPN = Token[];
 type Expression = string;
 
 function fixExpression(exp: string): Expression {
-    const tokens:string[] = [];
+    const tokens: string[] = [];
     let temp: string = "";
-    for(let i = 0; i < exp.length; i++) {
-        if(exp[i] == ' ')
-            continue;
 
-        if(!isNaN(parseInt(exp[i]))) {
+    for (let i = 0; i < exp.length; i++) {
+        if (exp[i] === ' ') continue;
+
+        if (!isNaN(parseInt(exp[i]))) {
             temp += exp[i];
-            continue;
+        } else {
+            if (temp !== '') {
+                tokens.push(temp);
+                temp = "";
+            }
+            tokens.push(exp[i]);
         }
-        
-        if(temp != '')
-            tokens.push(temp);
-        tokens.push(exp[i]);
-        temp = "";
-    }    
+    }
 
-    console.log(tokens);
-    return tokens.join('');
+    if (temp !== '') tokens.push(temp);
+
+    const addParentheses = (tokens: string[]): string[] => {
+        const result: string[] = [];
+        let i = 0;
+
+        while (i < tokens.length) {
+            if (tokens[i] === '*' || tokens[i] === '/') {
+                result.splice(result.length - 1, 0, '(');
+                result.push(tokens[i]);
+                result.push(tokens[i + 1], ')');
+                i += 2;
+            } else {
+                result.push(tokens[i]);
+                i++;
+            }
+        }
+        return result;
+    };
+
+    const polishedTokens = addParentheses(tokens);
+
+    console.log(polishedTokens);
+    return polishedTokens.join(' ');
 }
 
 function tokenize(expression: Expression): Tokens {

@@ -55,9 +55,9 @@ const Calculator: React.FC = () => {
                 height: '600px',
         }} className='calculator'>
             <Display display={Evaluate(expresson).toString()}/>
-            <button onClick={()=>{
-                setExpression(expresson + "s");
-            }}>Add</button>
+            <input type="text" onChange={(e)=>{
+                setExpression(e.target.value);
+            }} value={expresson}/>
         </div>
     );
 };

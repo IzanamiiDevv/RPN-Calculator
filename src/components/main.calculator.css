@@ -14,13 +14,6 @@
   transition: transform 0.3s ease-in-out, width 0.3s ease-in-out;
 }
 
-.calc:active {
-  transform: translate(-50%, -50%) scale(1.1);
-  width: 561px;
-}
-
-/* 510px * 1.1 = 561px */
-
 .window {
   position: relative;
   overflow: hidden;
@@ -28,6 +21,7 @@
   height: 126px;
   background: #8e8372;
   border-radius: 6px;
+  transition: transform 0.3s ease-in-out, width 0.3s ease-in-out;
 }
 
 .result {
@@ -44,7 +38,7 @@
   border: none;
 }
 
-.readout, .placehold {
+.readout {
   position: absolute;
   text-align: right;
   left: -50px;
@@ -57,7 +51,7 @@
   color: rgba(9, 255, 136, 1);
 }
 
-.readout::placeholder, .placehold::placeholder {
+.readout::placeholder {
   color: rgba(9, 255, 136, 0.1);
 }
 

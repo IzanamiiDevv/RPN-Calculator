@@ -1,42 +1,93 @@
+import { useState } from 'react';
 import Display from './Display';
+import Evaluate from './Evaluate';
 import './main.calculator.css';
+import { Result } from '../Types';
+
+type keys = number[] | string[]
 
 const MainCalculator = () => {
+  const numbers: keys = [7,8,9,4,5,6,1,2,3];
+  const operators: keys = ['+','(','-',')','=','×','÷'];
+  const [screen, setScreen] = useState<string>("0");
+
+  const addKey = (key: string): void => {
+    if(screen.length == 1 && screen == '0') {
+      setScreen(key);
+    }else {setScreen(screen + key)}
+  }
+
+  const removeKey = (): void  => {
+    let temp: string[] = screen.split('');
+    temp.pop();
+    setScreen(temp.length == 0 ? '0' : temp.join(''));
+  }
+
+  const resetScreen = (): void => {
+    setScreen("0");
+  }
+
+  const evaluate = (): void => {
+    let expression: any = screen.split('').map((key) => {
+      if(key == '×') return '*';
+      if(key == '÷') return '/';
+      return key;
+    }).join('');
+
+    console.log(expression);
+    setScreen(((): any=>{
+      return Evaluate(expression);
+    })());
+  }
+
+  const credentails = (type:number): void => {
+
+  }
 
   return (
     <div className="calc">
       <div className="top-part">
-        <a rel="noopener noreferrer">Calculator</a>
+        <a rel="noopener noreferrer">IzanamiiDevv</a>
         <div className="back-toppart"></div>
       </div>
-      <Display display='Gago'/>
+      <Display display={screen}/>
       <div className="section one">
-        <button className="key" onClick={() => {}}><div className="key_before">СП</div></button>
-        <button className="key"><div className="key_before">П+</div></button>
-        <button className="key"><div className="key_before">ИП</div></button>
-        <button className="key_red" onClick={() => {}}><div className="key_before_red">Сх</div></button>
+        <button className="key" onClick={() => {}}>
+          <div className="key_before">G</div>
+        </button>
+        <button className="key" onClick={()=> {}}>
+          <div className="key_before">R</div>
+        </button>
+        <button className="key" onClick={() => removeKey()}>
+          <div className="key_before">D</div>
+        </button>
+        <button className="key_red" onClick={() => resetScreen()}>
+          <div className="key_before_red">Сх</div>
+        </button>
       </div>
       <div className="section two">
-        <button className="key" onClick={() => {}}><div className="key_before">7</div></button>
-        <button className="key" onClick={() => {}}><div className="key_before">8</div></button>
-        <button className="key" onClick={() => {}}><div className="key_before">9</div></button>
-        <button className="key" onClick={() => {}}><div className="key_before">4</div></button>
-        <button className="key" onClick={() => {}}><div className="key_before">5</div></button>
-        <button className="key" onClick={() => {}}><div className="key_before">6</div></button>
-        <button className="key" onClick={() => {}}><div className="key_before">1</div></button>
-        <button className="key" onClick={() => {}}><div className="key_before">2</div></button>
-        <button className="key" onClick={() => {}}><div className="key_before">3</div></button>
-        <button className="key_long" onClick={() => {}}><div className="key_before_long">0</div></button>
-        <button className="key" onClick={() => {}}><div className="key_before">,</div></button>
+        {numbers.map((key, index)=>{
+          return <button className="key" onClick={ ()=> addKey(key.toString()) } key={index}>
+            <div className="key_before">{key}</div>
+          </button>
+        })}
+        <button className="key_long" onClick={ ()=> addKey('0') }>
+          <div className="key_before_long">0</div>
+        </button>
+        <button className="key" onClick={() => {}}>
+          <div className="key_before">,</div>
+        </button>
       </div>
       <div className="section three">
-        <button className="key" onClick={() => {}}><div className="key_before">+</div></button>
-        <button className="key" onClick={() => {}}><div className="key_before">%</div></button>
-        <button className="key" onClick={() => {}}><div className="key_before">-</div></button>
-        <button className="key" onClick={() => {}}><div className="key_before">/-/</div></button>
-        <button className="key_vertical" onClick={() => {}}><div className="key_before_vertical">=</div></button>
-        <button className="key" onClick={() => {}}><div className="key_before">×</div></button>
-        <button className="key" onClick={() => {}}><div className="key_before">÷</div></button>
+        {operators.map((item , index) => {
+          return (item == '=') ?
+            <button key={index} className="key_vertical" onClick={() => evaluate()}>
+              <div className="key_before_vertical">{item}</div>
+            </button> 
+            : <button key={index} className="key" onClick={() => addKey(item)}>
+              <div className="key_before">{item}</div>
+            </button>
+        })}
       </div>
       <div className="btm-part"></div>
     </div>

@@ -52,8 +52,6 @@ function fixExpression(exp: string): Expression {
     };
 
     const polishedTokens = addParentheses(tokens);
-
-    console.log(polishedTokens);
     return polishedTokens.join(' ');
 }
 
@@ -142,7 +140,7 @@ function evaluateRPN(tokens: TokensRPN): number | string {
                 break;
             case "Operator":
                 if (stack.length < 2) {
-                    return "Insufficient operands for operator";
+                    return "Error";
                 }
                 const b: number = stack.pop() ?? 0;
                 const a: number = stack.pop() ?? 0;
@@ -158,21 +156,21 @@ function evaluateRPN(tokens: TokensRPN): number | string {
                         break;
                     case "/":
                         if (b === 0) {
-                            return "Division by zero";
+                            return "Error";
                         }
                         stack.push(a / b);
                         break;
                     default:
-                        return `Invalid operator: ${token.value}`;
+                        return "Error";
                 }
                 break;
             default:
-                return "Invalid token";
+                return "Error";
         }
     }
 
     if (stack.length !== 1) {
-        return "Invalid expression";
+        return "Error";
     }
 
     return stack[0];

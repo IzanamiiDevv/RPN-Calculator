@@ -2,7 +2,6 @@ import { useState } from 'react';
 import Display from './Display';
 import Evaluate from './Evaluate';
 import './main.calculator.css';
-import { Result } from '../Types';
 
 type keys = number[] | string[]
 
@@ -34,14 +33,9 @@ const MainCalculator = () => {
       return key;
     }).join('');
 
-    console.log(expression);
     setScreen(((): any=>{
       return Evaluate(expression);
     })());
-  }
-
-  const credentails = (type:number): void => {
-
   }
 
   return (
@@ -52,10 +46,14 @@ const MainCalculator = () => {
       </div>
       <Display display={screen}/>
       <div className="section one">
-        <button className="key" onClick={() => {}}>
+        <button className="key" onClick={() => {
+          window.location.href = "https://github.com/IzanamiiDevv";
+        }}>
           <div className="key_before">G</div>
         </button>
-        <button className="key" onClick={()=> {}}>
+        <button className="key" onClick={()=> {
+          window.location.href = "https://github.com/IzanamiiDevv/RPN-Calculator";
+        }}>
           <div className="key_before">R</div>
         </button>
         <button className="key" onClick={() => removeKey()}>

@@ -10,5 +10,3 @@ const Display = ({display}: TDisplay) => {
 }
 
 export default Display;
-
-//<input className="placehold" readOnly disabled placeholder="88888888888888" />
